@@ -55,8 +55,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en-CA">
-      <body>
+    <html lang="en-CA" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <LenisProvider>
           <a
             href="#main-content"

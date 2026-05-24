@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,11 +14,9 @@ type CategoryCardProps = {
 };
 
 export function CategoryCard({ category, featured = false }: CategoryCardProps) {
-  const reduceMotion = useReducedMotion();
-
   return (
     <motion.article
-      whileHover={reduceMotion ? undefined : { y: -6 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className={featured ? "md:col-span-2" : undefined}
     >

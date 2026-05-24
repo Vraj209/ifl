@@ -10,7 +10,6 @@ import {
   Truck,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -45,7 +44,7 @@ export function MainNavigation() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6">
       <nav
-        className="glass-surface mx-auto flex h-16 max-w-[1400px] items-center justify-between rounded-lg px-3 md:h-[72px] md:px-5"
+        className="glass-surface mx-auto flex h-16 max-w-[1400px] items-center justify-between rounded-lg bg-warm-white px-3 md:h-[72px] md:px-5"
         aria-label="Primary navigation"
       >
         <Link
@@ -53,27 +52,23 @@ export function MainNavigation() {
           className="group flex min-h-11 items-center gap-3 rounded-md px-2"
           aria-label="INL Tree Farm home"
         >
-          <span className="relative flex size-10 overflow-hidden rounded-md bg-forest-black">
-            <Image
-              src="https://inltreefarm.com/wp-content/uploads/2024/11/INL-LOGO.png"
-              alt=""
-              fill
-              sizes="40px"
-              className="object-contain p-1.5"
-              priority
-            />
+          <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-forest-black text-warm-white shadow-[inset_0_0_0_1px_rgba(248,247,244,0.12)] md:size-11">
+            <span className="absolute bottom-2 h-0.5 w-6 rounded-full bg-sage" />
+            <span className="relative -mt-1 font-display text-base font-semibold tracking-[0.08em] text-warm-white">
+              INL
+            </span>
           </span>
           <span className="hidden leading-none sm:block">
-            <span className="block font-display text-sm font-semibold text-forest-black">
+            <span className="block font-display text-base font-semibold tracking-normal text-forest-black">
               INL Tree Farm
             </span>
-            <span className="mt-1 block text-xs text-forest-black/56">
+            <span className="mt-1.5 block text-xs font-medium text-forest-black/56">
               Cambridge, Ontario
             </span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden min-w-0 items-center gap-0 xl:flex">
           <div
             className="relative"
             onMouseEnter={() => setMegaOpen(true)}
@@ -83,7 +78,7 @@ export function MainNavigation() {
             <Link
               href="/inventory"
               className={cn(
-                "flex min-h-11 items-center gap-1 rounded-md px-4 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 hover:text-forest-black",
+                "flex min-h-11 items-center gap-1 rounded-md px-3 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 hover:text-forest-black 2xl:px-4",
                 pathname.startsWith("/inventory") && "text-forest-black",
               )}
               aria-expanded={megaOpen}
@@ -100,7 +95,7 @@ export function MainNavigation() {
                 megaOpen && "visible translate-y-1 opacity-100",
               )}
             >
-              <div className="glass-surface grid gap-5 rounded-lg p-5 shadow-glass md:grid-cols-[1.1fr_0.9fr]">
+              <div className="glass-surface grid gap-5 rounded-lg bg-warm-white p-5 shadow-glass md:grid-cols-[1.1fr_0.9fr]">
                 <div className="grid grid-cols-2 gap-2">
                   {inventoryCategories.map((category) => (
                     <Link
@@ -138,24 +133,27 @@ export function MainNavigation() {
             <Link
               key={item.href}
               href={item.href}
-              className="min-h-11 rounded-md px-4 py-3 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 hover:text-forest-black"
+              className="min-h-11 whitespace-nowrap rounded-md px-3 py-3 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 hover:text-forest-black 2xl:px-4"
             >
               {item.label}
             </Link>
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
           <a
             href={`tel:${site.phone.replaceAll("-", "")}`}
-            className="hidden min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 xl:flex"
+            className="hidden min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-forest-black/72 transition hover:bg-forest-black/5 2xl:flex"
           >
             <Phone className="size-4" aria-hidden="true" />
             {site.phone}
           </a>
           <Link
             href="/#quote"
-            className={buttonVariants({ variant: "primary", size: "sm" })}
+            className={cn(
+              buttonVariants({ variant: "primary", size: "sm" }),
+              "hidden lg:inline-flex",
+            )}
           >
             Request Availability
             <ArrowRight className="size-4" aria-hidden="true" />
@@ -163,7 +161,7 @@ export function MainNavigation() {
         </div>
 
         <button
-          className="flex size-11 items-center justify-center rounded-md text-forest-black transition hover:bg-forest-black/5 lg:hidden"
+          className="flex size-11 items-center justify-center rounded-md text-forest-black transition hover:bg-forest-black/5 xl:hidden"
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -175,8 +173,10 @@ export function MainNavigation() {
 
       <div
         className={cn(
-          "glass-surface mx-auto mt-2 max-w-[1400px] overflow-hidden rounded-lg transition lg:hidden",
-          mobileOpen ? "max-h-[720px] opacity-100" : "max-h-0 opacity-0",
+          "glass-surface mx-auto mt-2 max-w-[1400px] overflow-hidden rounded-lg bg-warm-white transition xl:hidden",
+          mobileOpen
+            ? "max-h-[calc(100svh-10rem)] overflow-y-auto overscroll-contain opacity-100"
+            : "max-h-0 opacity-0",
         )}
       >
         <div className="grid gap-1 p-3">

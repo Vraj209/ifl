@@ -32,7 +32,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.title} | Wholesale Inventory | INL Tree Farm`,
+    title: `${category.title} | Wholesale Inventory`,
     description: category.description,
     alternates: {
       canonical: `${site.url}/inventory/${category.slug}`,

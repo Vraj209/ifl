@@ -5,7 +5,7 @@ import { QuoteCta } from "@/components/sections/quote-cta";
 import { Container } from "@/components/ui/container";
 
 export const metadata: Metadata = {
-  title: "Wholesale Inventory | INL Tree Farm",
+  title: "Wholesale Inventory",
   description:
     "Browse wholesale Ontario-grown trees, evergreens, shrubs, perennials, and soil blends from INL Tree Farm near Cambridge.",
 };
